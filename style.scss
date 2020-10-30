@@ -1,0 +1,442 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+$poppins :'Poppins', sans-serif;
+$ubuntu : 'Ubuntu', sans-serif;
+$comic : 'Comic Neue', cursive;
+$yellow:#ffc727;
+$blue : #006992;
+$bg : #111111;
+
+@mixin displayFlex($dir) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $dir;
+}
+
+
+body{
+    background: $bg;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.top{
+    text-align: center;
+    .img{
+       padding: 10px;
+       width: 20vh;
+    }
+    .txt{
+       
+        font-family: $poppins;
+        color: white;
+        font-size: 2rem;
+    }
+}
+ul{
+    list-style: none;
+}
+
+.search-bar{
+    margin-top: 10px;
+    @include displayFlex(row);
+    .bg{
+        @include displayFlex(row);
+        background-color: black;
+        padding: 0px 20px;
+        border-radius: 10px;
+    }
+    .search{
+        background:none;
+        outline: none;
+        border: 0;
+        padding: 20px;
+        font-size: 18px;
+        color: $yellow;
+    }
+    .search::placeholder{
+        color: #806313;
+    }
+}
+
+.links{
+    width: 100%;
+    height: 35vh;
+    margin: 10px 0 60px 0;
+    @include displayFlex(column);
+    justify-content: space-between;
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    .tab{
+        margin: 20px;
+        width : 260px;
+        height : 50px;
+        background-color: $blue;
+        border-radius: 10px;
+        cursor: pointer;
+        @include displayFlex(row);
+        span{
+            color:white;
+            font: 18px $ubuntu;
+        }
+    }
+    a{
+        text-decoration: none;
+        cursor: default;
+    }
+}
+
+.buttons{
+    @include displayFlex(row);
+    padding: 0;
+    margin: 0;
+    justify-content: space-between;
+    span{
+        color: white;
+        font-family: $comic;
+        font-size: 18px;
+    }
+}
+
+.social-box{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 100px;
+    .social{
+        width: 75px;
+        height: 75px;
+        border-radius: 100px;
+        transition: all 200ms ease;
+        position: absolute;
+        bottom: 20px;
+        left: 30px;
+        z-index: 99;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        @include displayFlex(row);
+        img{
+            width: 30px;
+            height: auto;
+            border-radius: 0;
+        }
+        &:hover{
+            transform: rotateZ(20deg);
+        }
+    }
+    .social-text{
+        text-align: end;
+        position: absolute;
+        top: -40px;
+        left: 25px;
+    }
+    .arrow-social{
+        position: absolute;
+        top: -30px;
+        left: 35px;
+    }
+}
+
+
+.comm-box{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 100px;
+    .comm{
+        width: 75px;
+        height: 75px;
+        border-radius: 100px;
+        transition: all 200ms ease;
+        position: absolute;
+        bottom: 20px;
+        right: 30px;
+        z-index: 2;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        @include displayFlex(row);
+        &:hover{
+            transform: rotateZ(-20deg);
+        }
+        .comm-icon{
+            width: 30px;
+            height: auto;
+            border-radius: 0;
+        }
+    }
+    .comm-text{
+        position: absolute;
+        top: 45px;
+        right: 140px;
+    }
+    .arrow-comm{
+        position: absolute;
+        top: 25px;
+        right:110px;
+    }
+}
+
+.blur-social{
+    width: 0px;
+    height: 0px;
+    background: rgba(12, 12, 12, 0.8);
+    backdrop-filter: blur(40px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-radius: 100%;
+    z-index: 0;
+    transition: 500ms;
+    clip-path: circle(0%);
+}
+.blur-comm{
+    width: 0px;
+    height: 0px;
+    background: rgba(12, 12, 12, 0.8);
+    backdrop-filter: blur(40px);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 100%;
+    z-index: 0;
+    transition: 500ms;
+    clip-path: circle(0%);
+}
+
+.index{
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    z-index: 1;
+    clip-path: circle(100%);
+}
+
+@media only screen and (max-width:350px){
+    .search-bar{
+        .bg{
+            @include displayFlex(row);
+            justify-content: space-evenly;
+            padding: 0 10px;
+            margin: 0 10px;
+            
+        }
+        .search{
+            width: 70%;
+        }
+    }
+    .links{
+        height: 30vh;
+    }
+    .social-box{
+        .social{
+            width: 55px;
+            height: 55px;
+            img{
+                width: 25px;
+                height: auto;
+                border-radius: 0;
+            }
+        }
+        .social-text{
+            text-align: end;
+            position: absolute;
+            top: -40px;
+            left: 25px;
+        }
+        .arrow-social{
+            position: absolute;
+            top: -20px;
+            left: 20px;
+        }
+    }
+    .comm-box{
+        .comm{
+            width: 55px;
+            height: 55px;
+            .comm-icon{
+                width: 25px;
+            }
+        }
+        .comm-text{
+            position: absolute;
+            top: 45px;
+            right: 140px;
+        }
+        .arrow-comm{
+            position: absolute;
+            top: 35px;
+            right:85px;
+        }
+    }
+}
+
+@media only screen and (min-width:720px){
+    .social-box{
+        .social{
+            width: 85px;
+            height: 85px;
+            img{
+                width: 30px;
+                height: auto;
+                border-radius: 0;
+            }
+        }
+        .social-text{
+            text-align: end;
+            position: absolute;
+            top: -40px;
+            left: 25px;
+        }
+        .arrow-social{
+            position: absolute;
+            top: -60px;
+            left: 20px;
+            width: 25vh;
+        }
+    }
+    .comm-box{
+        .comm{
+            width: 85px;
+            height: 85px;
+            .comm-icon{
+                width: 30px;
+            }
+        }
+        .comm-text{
+            position: absolute;
+            top: 45px;
+            right: 140px;
+        }
+        .arrow-comm{
+            position: absolute;
+            top:-5px;
+            right:115px;
+            width: 15vh;
+        }
+    }
+    .top{
+        .img{
+           padding: 10px;
+           width: 22vh;
+        }
+        .txt{
+            font-size: 3rem;
+        }
+    }
+    .search-bar{
+        margin-top: 10px;
+        @include displayFlex(row);
+        .bg{
+            @include displayFlex(row);
+            width: 60%;
+            background-color: black;
+            padding: 0px 20px;
+            border-radius: 10px;
+        }
+        .search{
+            width: 100%;
+        }
+    }
+    .links{
+        .tab{
+            margin: 20px;
+            width : 460px;
+            height : 70px;
+            span{
+                font: 1.4rem $ubuntu;
+            }
+        }
+        
+    }
+}
+@media only screen and (min-width: 992px){
+    .social-box{
+        .social{
+            width: 85px;
+            height: 85px;
+            img{
+                width: 30px;
+                height: auto;
+                border-radius: 0;
+            }
+        }
+        .social-text{
+            text-align: end;
+            position: absolute;
+            top: -40px;
+            left: 25px;
+        }
+        .arrow-social{
+            position: absolute;
+            top: -55px;
+            left: 40px;
+            width: 28vh;
+        }
+    }
+    .comm-box{
+        .comm{
+            width: 85px;
+            height: 85px;
+            .comm-icon{
+                width: 30px;
+            }
+        }
+        .comm-text{
+            position: absolute;
+            top: 45px;
+            right: 140px;
+        }
+        .arrow-comm{
+            position: absolute;
+            top:-5px;
+            right:115px;
+            width: 20vh;
+        }
+    }
+    .top{
+        .img{
+           padding: 10px;
+           width: 22vh;
+        }
+        .txt{
+            font-size: 3rem;
+        }
+    }
+    .search-bar{
+        margin-top: 10px;
+        @include displayFlex(row);
+        .bg{
+            @include displayFlex(row);
+            width: 60%;
+            background-color: black;
+            padding: 0px 20px;
+            border-radius: 10px;
+        }
+        .search{
+            width: 100%;
+        }
+    }
+    .links{
+        .tab{
+            margin: 20px;
+            width : 380px;
+            height : 60px;
+            span{
+                font: 1.4rem $ubuntu;
+            }
+        }
+        
+    }
+}
